@@ -11,8 +11,19 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
       //  ListTableView.backgroundView = UIImageView(image: UIImage(named: "luke-chesser-pJadQetzTkI-unsplash")
         
+           
+        //      let st = [bex, abylay, aidar, dara]
+        sessionsStorage.add(bex)
+        sessionsStorage.add(abylay)
+        sessionsStorage.add(aidar)
+        sessionsStorage.add(dara)
     }
     
+    let sessionsStorage = SessionsStorage()
+    let bex = Person(name: "Bexultan", surname: "Tokan", steps: 2002, rating: 1)
+    let abylay = Person(name: "Abylay", surname: "Yerzhanov", steps: 2001, rating: 2)
+    let aidar = Person(name: "Aidar", surname: "Nugmanoff", steps: 2000, rating: 3)
+    let dara = Person(name: "Dara", surname: "Tumenbayeva", steps: 1999, rating: 4)
 //    func addCellToTableView() {
 //        ListTableView.beginUpdates()
 //        ListTableView.insertRows(at: <#T##[IndexPath]#>, with: <#T##UITableView.RowAnimation#>)
@@ -24,19 +35,19 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
 //    let abylay = Person(name: "Abylay", surname: "Yerzhanov", steps: 2001, rating: 2)
 //    let aidar = Person(name: "Aidar", surname: "Nugmanoff", steps: 2000, rating: 3)
 //    let dara = Person(name: "Dara", surname: "Tumenbayeva", steps: 1999, rating: 4)
-////      let st = [bex, abylay, aidar, dara]
+//    let st = [bex, abylay, aidar, dara]
 //    sessionsStorage.add(bex)
     
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("number of rows: \(SessionsStorage.shared.sessions.count)")
-        return SessionsStorage.shared.sessions.count
+        print("number of rows: \(sessionsStorage.sessions.count)")
+        return sessionsStorage.sessions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let personCell = tableView.dequeueReusableCell(withIdentifier: "person_cell", for: indexPath) as! LeaderboardTableViewCell
-        let session = SessionsStorage.shared.sessions[indexPath.row]
+        let session = sessionsStorage.sessions[indexPath.row]
         personCell.configure(with: session)
         
         return personCell
