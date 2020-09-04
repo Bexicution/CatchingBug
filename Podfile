@@ -5,4 +5,12 @@ target 'Step Out' do
 
    pod 'Kingfisher', '5.15.0'
    pod 'Firebase/Analytics'
+
+   pod 'Firebase/Core'
+   pod 'Firebase/Auth'
+   pod 'GoogleSignIn'
+   pod 'Firebase/Database'
+   pod 'Firebase/Storage' 
+
+
 end

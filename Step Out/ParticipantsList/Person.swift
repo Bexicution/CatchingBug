@@ -12,13 +12,11 @@ class Person {
     let name: String
     let surname: String
     let steps: Int
-    let rating: Int
    
-    init (name: String, surname: String, steps: Int, rating: Int) {
+    init (name: String, surname: String, steps: Int) {
         self.name = name
         self.surname = surname
         self.steps = steps
-        self.rating = rating
     }
     
 }

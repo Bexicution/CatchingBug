@@ -1,25 +1,53 @@
-//
-//  AppDelegate.swift
-//  Step Out
-//
-//  Created by Mac on 8/20/20.
-//  Copyright © 2020 Bexultan. All rights reserved.
-//
-
 import UIKit
 import Firebase
+import GoogleSignIn
+import FirebaseCore
+import FirebaseAuth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
+ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
+    
+    var user_email = ""
+    var user_name = ""
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.clientID = "273121369071-i2lph2nq4srqjra8ttrj9k0j8t93e80e.apps.googleusercontent.com"
+        
+    
+        
         return true
     }
 
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print(error.localizedDescription)		
+        } else {
+            guard let authentication = user.authentication else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+                if error == nil {
+                    self.user_email = result?.user.email as! String
+                    self.user_name = result?.user.displayName as! String 
+                    
+                } else {
+                    print(error?.localizedDescription)
+                }   
+            }
+            
+        
+        }
+        
+        
+        //     print("User email: \(user.profile.email ?? "No email")")
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

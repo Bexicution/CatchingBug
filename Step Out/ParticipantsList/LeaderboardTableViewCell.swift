@@ -23,6 +23,6 @@ class LeaderboardTableViewCell: UITableViewCell {
         name.text = person.name
         surname.text = person.surname
         stepsNum.text = "\(person.steps)"
-        ratingNum.text = "\(person.rating)"
+        ratingNum.text = "0"
     }
 }
