@@ -46,7 +46,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 let fullNameArr = fullName?.components(separatedBy: " ")
                 let name = fullNameArr?[0] ?? "NAME"
                 //print("NAME: \(String(describing: name))")
-                let surname = fullNameArr?[1] ?? "SURNAME"
+                let surname = "SURNAME"
                 //print("SURNAME: \(String(describing: surname))")
                 
                 let user1 = Person(name: name, surname: surname, steps: steps ?? -1)

@@ -9,21 +9,14 @@ import FirebaseAuth
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var window: UIWindow?
-    var user_name = ""
+    var username: String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         FirebaseApp.configure()
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let initialViewController = storyboard.instantiateInitialViewController() {
-//            window?.rootViewController = initialViewController
-//            window?.makeKeyAndVisible()
-//        }
-        
+        try! Auth.auth().signOut()
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.clientID = "273121369071-i2lph2nq4srqjra8ttrj9k0j8t93e80e.apps.googleusercontent.com"
-        checkState()
+        coordinateRouting()
         return true
     }
 
@@ -33,70 +26,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         } else {
             guard let authentication = user.authentication else { return }
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+            Auth.auth().signIn(with: credential) { [weak self] (result, error) in
+                guard let self = self else { return }
                 if error == nil {
-                    self.user_name = result?.user.displayName as! String
-
-                    print("USER ID \(result?.user.tenantID ?? "is ")") // id is nil
-                    //self.checkState()
-                    //  self.leaderboardPage()
-                    // let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    //let LeaderboardVC = storyboard.instantiateViewController(withIdentifier: "LeaderboardView") as! LeaderboardViewController
-                    //self.present(LeaderboardVC, animated: false, completion: nil)
-                    //self.window?.rootViewController?.present(LeaderboardVC, animated: false, completion: nil)
-//                    self.window?.rootViewController = UINavigationController(rootViewController: LeaderboardViewController())
-//                    self.window?.makeKeyAndVisible()
-                    
+                    self.username = result?.user.displayName
+                    self.coordinateRouting()
                 } else {
-                    
-                    print(error?.localizedDescription ?? "error")
-                }   
+                    print(error!.localizedDescription)
+                }
             }
-            
-        
         }
-        
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance().handle(url)
     }
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
-}
-
-extension AppDelegate {
-    fileprivate func checkState() {
+    
+    private func coordinateRouting() {
         window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if (Auth.auth().currentUser != nil) {
-            leaderboardPage()
-            print("YES USER IS ONLINE")
+            window?.rootViewController = storyboard.instantiateViewController(identifier: "LeaderboardViewController") as! LeaderboardViewController
+        } else {
+            window?.rootViewController = storyboard.instantiateViewController(identifier: "SignInViewController") as! SignInViewController
         }
-        else {
-            print("USER IS OFFline")
-            loginPage()
-        }
-    }
-    
-    func loginPage() {
-        let initialVC = initialViewController()
-        window?.rootViewController = initialVC
-        window?.makeKeyAndVisible()
-    }
-    func leaderboardPage() {
-       // let leaderboardViewController = LeaderboardViewController()
-        window?.rootViewController = UINavigationController(rootViewController: LeaderboardViewController())
+        
         window?.makeKeyAndVisible()
     }
 }
