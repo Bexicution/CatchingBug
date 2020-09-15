@@ -9,10 +9,7 @@
 import UIKit
 import GoogleSignIn
 
-class ViewController: UIViewController {
-    
-  //  @IBOutlet var miniFrame: UIButton!
-  //  @IBOutlet var signInButton: UILabel!
+class initialViewController: UIViewController {
     
     @IBOutlet var signInButtonGoogle: GIDSignInButton!
     
@@ -20,6 +17,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
+        
+       
+        
         
         
        /*
@@ -39,12 +39,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func GoogleSignedInTapped() {
-        performSegue(withIdentifier: "leaderboard", sender: nil)
+       // performSegue(withIdentifier: "Leaderboard", sender: nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vclogin = storyboard.instantiateViewController(withIdentifier: "LeaderboardView")
+//        self.present(vclogin, animated: true) {
+//            return
+//        }
+        return
     }
-    /*
+    
     @IBAction func signInButton2() {
-        performSegue(withIdentifier: "leaderboard", sender: nil)
+       // performSegue(withIdentifier: "leaderboard", sender: nil)
+        
     }
-    */
+    
 }
 
