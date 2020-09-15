@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        try! Auth.auth().signOut()
         GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.clientID = "273121369071-i2lph2nq4srqjra8ttrj9k0j8t93e80e.apps.googleusercontent.com"
         coordinateRouting()
