@@ -14,6 +14,7 @@
 		041ACFF024EDA24400834852 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041ACFEE24EDA24400834852 /* LaunchScreen.storyboard */; };
 		041AD00324EE92A100834852 /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 041AD00224EE92A100834852 /* Comfortaa-Regular.ttf */; };
 		041AD00724EF071100834852 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AD00624EF071100834852 /* LeaderboardViewController.swift */; };
+		044FC81C2518E64D0017CE9C /* Pods_Step_Out.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044FC81B2518E64D0017CE9C /* Pods_Step_Out.framework */; };
 		0451E1FA24F7057C00FEC60D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0451E1F924F7057C00FEC60D /* GoogleService-Info.plist */; };
 		049E371E24EFCAF7005846C9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E371D24EFCAF7005846C9 /* Person.swift */; };
 		049E372024EFD6C2005846C9 /* SessionsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E371F24EFD6C2005846C9 /* SessionsStorage.swift */; };
@@ -31,6 +32,7 @@
 		041ACFF124EDA24400834852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041AD00224EE92A100834852 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		041AD00624EF071100834852 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		044FC81B2518E64D0017CE9C /* Pods_Step_Out.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Step_Out.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0451E1F924F7057C00FEC60D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		049E371D24EFCAF7005846C9 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		049E371F24EFD6C2005846C9 /* SessionsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsStorage.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044FC81C2518E64D0017CE9C /* Pods_Step_Out.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +144,7 @@
 		BC3D7E2C5BF35419FABB6113 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				044FC81B2518E64D0017CE9C /* Pods_Step_Out.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
