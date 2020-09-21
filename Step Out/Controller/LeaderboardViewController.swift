@@ -1,60 +1,106 @@
 import UIKit
 import FirebaseDatabase
 import Firebase
+import CoreMotion
+import FirebaseAuth
 
 class LeaderboardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
  
+    let activityManager = CMMotionActivityManager()
+    let pedometer = CMPedometer()
     
-
+    
     @IBOutlet var ListTableView: UITableView!
     @IBOutlet var YourNumOfSteps: UILabel!
     var sessionsStorage = [Person]()
     var ref = Database.database().reference()
-    //let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
- //   lazy var fullName = appDelegate.user_name
-    var fullName = ""
+    var fullName = "Sample Name"
+    let user = Auth.auth().currentUser
+    var counter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  title = "Leaderboard"
-          
-//        let storyboard = UIStoryboard(name: "main", bundle: nil)
-//        let vcLeaderboard = storyboard.instantiateViewController(withIdentifier: "LeaderboardView")
-//        self.present(vcLeaderboard, animated: true)
+        enterMyself()
         fetchUser()
-       // enterMyself()
-      //  ListTableView.backgroundView = UIImageView(image: UIImage(named: "luke-chesser-pJadQetzTkI-unsplash")
- 
-        print(sessionsStorage.count)
+        
+//        if CMMotionActivityManager.isActivityAvailable() {
+//            print("YES, Active")
+//            self.activityManager.startActivityUpdates(to: OperationQueue.main) { (data) in
+//                DispatchQueue.main.async {
+//                    if let activity = data {
+//                        if activity.running == true {
+//                            self.YourNumOfSteps.text = "Running"
+//                            print("Running")
+//                        } else if activity.walking == true {
+//                            self.YourNumOfSteps.text = "Walking"
+//                            print("Walking")
+//                        } else if activity.automotive == true {
+//                            self.YourNumOfSteps.text = "Automobile"
+//                            print("Automobile")
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        pedometer.startUpdates(from: Date()) { (pedometerData, error) in
+//            if let pedData = pedometerData {
+//                self.YourNumOfSteps.text = "Steps: \(pedData.numberOfSteps)"
+//            } else {
+//                self.YourNumOfSteps.text = "Steps: Not available"
+//            }
+//        }
+        if CMPedometer.isStepCountingAvailable() {
+            self.pedometer.startUpdates(from: Date()) { (data, error) in
+                if error == nil {
+                    if let response = data {
+                        DispatchQueue.main.async {
+                            self.YourNumOfSteps.text = "\(response.numberOfSteps)"   
+                            //print(response.numberOfSteps)
+                        }
+                    }
+                }
+            }
+        } else {
+            self.YourNumOfSteps.text = "Steps: Unavailable"
+        }
     }
+    
+    
+    
+    
+    
     func enterMyself() {
-        let object = [
-            "fullname": fullName,
-            "steps": 0
-        ] as [String : Any]
-        ref.child("Users").childByAutoId().setValue(object)
+        ref.child("Users").child(user?.uid ?? "nil").observe(.value) { (DataSnapshot) in
+            let id = DataSnapshot.value as? [String: Any]
+            if id == nil {
+                let object = [
+                    "fullname": self.user?.displayName ?? "Sample Name",
+                    "steps": 0
+                ] as [String : Any]
+                self.ref.child("Users").child(self.user?.uid ?? "random").setValue(object)
+            }
+        }
         self.ListTableView.reloadData()
     }
     func fetchUser() {
+
+        sessionsStorage.removeAll()
         ref.child("Users").observe(.childAdded) { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
-           
+                if snapshot.key == self.user?.uid {
+                    self.YourNumOfSteps.text = ("\(dictionary["steps"] as! Int)")
+                }
                
                 let steps = dictionary["steps"] as? Int
                 let fullName =  dictionary["fullname"] as? String
                 let fullNameArr = fullName?.components(separatedBy: " ")
                 let name = fullNameArr?[0] ?? "NAME"
-                //print("NAME: \(String(describing: name))")
-                let surname = "SURNAME"
-                //print("SURNAME: \(String(describing: surname))")
-                
+                let surname = fullNameArr?[1] ?? ""
+               
                 let user1 = Person(name: name, surname: surname, steps: steps ?? -1)
-                //print(user1.name, user1.surname, user1.steps)
-                self.sessionsStorage.append(user1)
-                //self.sessionsStorage.sort(by: snapshot.steps > $1.steps)//(by: { $0.fileID > $1.fileID })
-                //images.sort { $0.fileID < $1.fileID }
-                self.sessionsStorage.sort { (a:Person, b:Person) -> Bool in
+                 self.sessionsStorage.append(user1)
+                 self.sessionsStorage.sort { (a:Person, b:Person) -> Bool in
                     a.steps > b.steps
                 }
                 self.ListTableView.reloadData()
@@ -72,13 +118,22 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func TestingButton() {
 //        fullName = self.appDelegate.getUsername()
-        self.YourNumOfSteps.text = "0"
+       /* self.YourNumOfSteps.text = "0"
         let object = [
             "fullname": fullName,
             "steps": 0
         ] as [String : Any]
-        ref.child("Users").childByAutoId().setValue(object)
-        self.ListTableView.reloadData()
+        ref.child("Users").childByAutoId().setValue(object)*/
+        self.fetchUser()
+        
+        do {
+            try Auth.auth().signOut()
+            appDelegate.window?.rootViewController = storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+            appDelegate.window?.makeKeyAndVisible()
+        } catch _ {
+            print("ERROR HERE")
+        }
+        
 //        if Auth.auth().currentUser?.uid == nil {
 //                       print("not logged in")
 //               }
@@ -104,7 +159,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print ("SIZE OF TABLEVIEW \(sessionsStorage.count)")
+      //  print ("SIZE OF TABLEVIEW \(sessionsStorage.count)")
         return sessionsStorage.count
     }
 
@@ -117,7 +172,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print ("tapped on \(indexPath)")
+      //  print ("tapped on \(indexPath)")
     }
     
 }

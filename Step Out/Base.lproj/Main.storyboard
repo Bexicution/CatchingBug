@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,43 +11,33 @@
         <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" id="BYZ-38-t0r" customClass="SignInViewController" customModule="Step_Out" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="BYZ-38-t0r" customClass="SignInViewController" customModule="Walk_a_fella" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="luke-chesser-pJadQetzTkI-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="zdE-dj-Pjy">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Step out" translatesAutoresizingMaskIntoConstraints="NO" id="eDS-Mr-RNg">
-                                <rect key="frame" x="85.5" y="208" width="243" height="59"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Vector" translatesAutoresizingMaskIntoConstraints="NO" id="IFH-fp-Wke">
-                                <rect key="frame" x="178" y="191" width="34" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syj-m5-03G" customClass="GIDSignInButton">
-                                <rect key="frame" x="20" y="327" width="374" height="475"/>
+                                <rect key="frame" x="20" y="757" width="374" height="45"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="vPO-IG-8s1"/>
+                                </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WorkAFellaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Vtx-iV-ASV">
+                                <rect key="frame" x="87" y="110" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="8Cb-cF-VVU"/>
+                                    <constraint firstAttribute="width" constant="240" id="OOf-uv-9FM"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.59701186419999996" green="0.3948936462" blue="0.9694111943" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zdE-dj-Pjy" secondAttribute="trailing" id="16E-Um-h3v"/>
-                            <constraint firstItem="zdE-dj-Pjy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1eF-qn-0ZU"/>
-                            <constraint firstItem="zdE-dj-Pjy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="D4g-fq-04E"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zdE-dj-Pjy" secondAttribute="bottom" id="EWg-NI-lg1"/>
+                            <constraint firstItem="Vtx-iV-ASV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="66" id="0gl-gW-phr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="syj-m5-03G" secondAttribute="trailing" constant="20" id="GXF-vv-Y9h"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zdE-dj-Pjy" secondAttribute="trailing" id="MQN-sP-IxT"/>
-                            <constraint firstItem="zdE-dj-Pjy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NDB-4o-Pb6"/>
-                            <constraint firstItem="syj-m5-03G" firstAttribute="top" secondItem="eDS-Mr-RNg" secondAttribute="bottom" constant="60" id="R2d-Bc-ask"/>
-                            <constraint firstItem="zdE-dj-Pjy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SWK-la-JX5"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zdE-dj-Pjy" secondAttribute="bottom" id="eZw-Oa-cXh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="syj-m5-03G" secondAttribute="bottom" constant="60" id="gqh-EO-b0k"/>
-                            <constraint firstItem="eDS-Mr-RNg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iAC-ZS-t6Y"/>
                             <constraint firstItem="syj-m5-03G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="lUd-xR-1CY"/>
-                            <constraint firstItem="eDS-Mr-RNg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="164" id="xl8-tq-bqc"/>
+                            <constraint firstItem="Vtx-iV-ASV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qg7-v2-aWC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -62,7 +53,7 @@
         <!--Leaderboard View Controller-->
         <scene sceneID="Jne-lc-GPO">
             <objects>
-                <viewController storyboardIdentifier="LeaderboardViewController" id="2S3-dF-XPn" customClass="LeaderboardViewController" customModule="Step_Out" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeaderboardViewController" id="2S3-dF-XPn" customClass="LeaderboardViewController" customModule="Walk_a_fella" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KIr-lR-HgV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,12 +88,14 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-Ah-Yfz">
                                 <rect key="frame" x="0.0" y="296" width="414" height="566"/>
-                                <color key="backgroundColor" red="0.20724117759999999" green="0.3333988786" blue="0.53260076050000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.5319681168" green="0.51526677610000005" blue="0.91459065679999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="566" id="HWf-ft-wIJ"/>
                                 </constraints>
+                                <color key="separatorColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="person_cell" rowHeight="66" id="Si7-r2-y4f" customClass="LeaderboardTableViewCell" customModule="Step_Out" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="person_cell" rowHeight="66" id="Si7-r2-y4f" customClass="LeaderboardTableViewCell" customModule="Walk_a_fella" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Si7-r2-y4f" id="jNE-QF-lRx">
@@ -141,7 +134,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" red="0.42691326140000002" green="0.41131618619999999" blue="0.7315753102" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="gCb-eL-DnB" firstAttribute="leading" secondItem="jNE-QF-lRx" secondAttribute="leading" constant="16" id="1z7-uO-FPx"/>
                                                 <constraint firstAttribute="bottom" secondItem="PCk-wt-Fu6" secondAttribute="bottom" constant="18" id="D5L-CE-qTQ"/>
@@ -191,7 +184,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.20724117759999999" green="0.3333988786" blue="0.53260076050000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.55754059550000001" green="0.46686220169999998" blue="0.94008678199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="h1Q-Ah-Yfz" firstAttribute="leading" secondItem="KIr-lR-HgV" secondAttribute="leading" id="0Rf-qQ-8jb"/>
                             <constraint firstItem="UT4-0H-NwI" firstAttribute="trailing" secondItem="h1Q-Ah-Yfz" secondAttribute="trailing" id="5Ym-2O-MNN"/>
@@ -247,8 +240,6 @@
     </scenes>
     <resources>
         <image name="Contacts" width="30" height="30"/>
-        <image name="Step out" width="243" height="59"/>
-        <image name="Vector" width="42" height="41"/>
-        <image name="luke-chesser-pJadQetzTkI-unsplash" width="1750" height="2500"/>
+        <image name="WorkAFellaLogo" width="1024" height="1024"/>
     </resources>
 </document>

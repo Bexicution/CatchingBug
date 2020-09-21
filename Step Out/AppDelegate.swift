@@ -46,9 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if (Auth.auth().currentUser != nil) {
-            window?.rootViewController = storyboard.instantiateViewController(identifier: "LeaderboardViewController") as! LeaderboardViewController
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "LeaderboardViewController") as! LeaderboardViewController
         } else {
-            window?.rootViewController = storyboard.instantiateViewController(identifier: "SignInViewController") as! SignInViewController
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
         }
         
         window?.makeKeyAndVisible()
